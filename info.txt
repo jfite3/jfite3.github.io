@@ -1,1 +1,1 @@
-This is a website. Be nice.
+When you click the link under blog to read the article, it works. When you try to go back, it doesn't.
