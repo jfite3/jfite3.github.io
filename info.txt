@@ -1,1 +1,1 @@
-When you click the link under blog to read the article, it works. When you try to go back, it doesn't.
+Please be nice. As much as I appreciate the fact that you are taking the time to read my code, I'm just trying to have a nice place to share ideas.
