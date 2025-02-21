@@ -218,12 +218,12 @@ function calculateBathFlowImperial() {
   // Potential warning
   let warningMsg = "";
   if (T_a <= T_star) {
-    warningMsg = "Warning: Hot water temperature (T_a) � desired bath temperature (T*). You cannot heat above T_a.<br>";
+    warningMsg = "Warning: Hot water temperature (T_a)  desired bath temperature (T*). You cannot heat above T_a.<br>";
   }
 
   // 2. Constants for water (Imperial)
   const rho = 8.34; // lb/gal
-  const c   = 1.0;  // BTU/(lb��F)
+  const c   = 1.0;  // BTU/(lb F)
 
   // 3. Formulas
   // numerator = (rho*c*V*(T_star - T0)) + (k*(T_star - T_env)*D)
@@ -258,9 +258,9 @@ function calculateBathFlowImperial() {
   output += `<p>Over ${D.toFixed(1)} hours, total hot water used: ${totalGallons.toFixed(1)} gallons</p>`;
   output += `<p>Total heat added: ${E_total.toFixed(0)} BTU</p>`;
   output += `<hr>`;
-  output += `<p><em>Continuously feed ${V_dot.toFixed(2)} gal/hr of ${T_a.toFixed(1)}�F water ` 
-         + `while draining the same amount, to raise your bath from ${T0.toFixed(1)}�F `
-         + `to ${T_star.toFixed(1)}�F and offset heat losses for ${D.toFixed(1)} hours.</em></p>`;
+  output += `<p><em>Continuously feed ${V_dot.toFixed(2)} gal/hr of ${T_a.toFixed(1)}F water `
+         + `while draining the same amount, to raise your bath from ${T0.toFixed(1)}F `
+         + `to ${T_star.toFixed(1)}F and offset heat losses for ${D.toFixed(1)} hours.</em></p>`;
   output += `<p><strong>Note:</strong> This lumps initial heating + steady maintenance into one constant flow rate.</p>`;
 
   // 6. Show results
