@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="http://justgregory.me/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Article - Just Gregory</title>
+  <style>
+    /* Import font */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+    
+    /* Global Styles & Dark Theme */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #121212;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+    
+    /* Header & Navbar */
+    header {
+      background: linear-gradient(135deg, #333, #555);
+      padding: 1rem;
+    }
+    .navbar {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .site-name {
+      font-size: 2rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+    nav ul li {
+      margin-left: 1rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ccc;
+    }
+    
+    /* Article Content */
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    article {
+      background: #1e1e1e;
+      border-radius: 5px;
+      padding: 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    article h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .post-date {
+      color: #aaa;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    article p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      text-align: justify;
+    }
+    /* Back Link */
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.5rem 1rem;
+      background: #667eea;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .back-link:hover {
+      background: #556cd6;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #333;
+      color: #ccc;
+      margin-top: 2rem;
+    }
+    
+    @media (max-width: 600px) {
+      .site-name {
+        font-size: 1.5rem;
+      }
+      nav ul li a {
+        font-size: 0.9rem;
+      }
+      article h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="http://justgregory.me/index.html" class="site-name">Just Gregory</a>
+      <nav>
+        <ul>
+          <li><a href="http://justgregory.me/index.html">Home</a></li>
+          <li><a href="http://justgregory.me/about.html">About</a></li>
+          <li><a href="http://justgregory.me/blog.html">Blog</a></li>
+          <li><a href="http://justgregory.me/projects.html">Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <div class="container">
+    <article>
+      <h1>Fuck Cold Baths!</h1>
+      <p class="post-date">February 21, 2025</p>
+
+<p>There’s nothing quite as relaxing as soaking in a warm bath—until the temperature starts to drop, and suddenly, your comfort turns into a chilly shock. Many people try to fix this by adding more hot water, but often they do it inefficiently, leading to wasted water and inconsistent temperatures. Understanding the physics behind heat loss in a bath can help maintain a stable and comfortable temperature without unnecessary water usage.</p>
+
+<p>This article will explore the science of bath heat retention, the mathematical model that predicts temperature changes, and a practical tool—the <strong>Bath Temperature Maintenance Calculator</strong>—that helps you determine exactly how much hot water you need to keep your bath at the perfect temperature.</p>
+
+<h2>The Science Behind a Cooling Bath</h2>
+
+<p>A bath loses heat primarily due to two mechanisms:</p>
+<ul>
+    <li><strong>Conduction:</strong> Heat is transferred from the water to the surrounding tub, and then into the environment.</li>
+    <li><strong>Convection & Evaporation:</strong> The exposed surface of the water loses heat to the air through convection, and evaporation further cools the bath.</li>
+</ul>
+
+<p>The rate of heat loss is influenced by several factors:</p>
+<ul>
+    <li><strong>Initial water temperature</strong></li>
+    <li><strong>Ambient room temperature</strong></li>
+    <li><strong>Water volume</strong></li>
+    <li><strong>Heat-loss coefficient</strong> (dependent on material and exposure)</li>
+</ul>
+
+<h2>The Mathematical Model</h2>
+
+<p>To predict the required amount of hot water to maintain a steady bath temperature, we use the <strong>heat balance equation</strong>:</p>
+      <img href="http://justgregory.me/projects/coldbaths/heatequation.png">
+
+<p>This equation balances the energy lost to the environment with the energy gained from adding hot water. By solving for \( \dot{m} \), we can determine how much hot water should be added over time to keep the bath warm.</p>
+
+<h2>The Solution: Bath Temperature Maintenance Calculator</h2>
+
+<p>To make this math more accessible, we’ve developed a <strong>Bath Temperature Maintenance Calculator</strong>. This tool allows you to input your bath parameters—desired temperature, volume, initial temperature, and duration—to compute the optimal amount of hot water needed.</p>
+
+<h3>How to Use the Calculator</h3>
+
+<ol>
+    <li>Click the link to activate the calculator in your browser.</li>
+    <li>Add necessary information. Because people have different sized bathtubs and better or worse water heaters, you will need to make some measurements to gain this information.</li>
+    <li>Click <strong>Calculate</strong>, and the tool will compute how much hot water you should add over time.</li>
+</ol>
+
+<h2>Why This Matters</h2>
+
+<p>By using the calculator, you can:</p>
+<ul>
+    <li><strong>Prevent sudden cold shocks</strong> while bathing.</li>
+    <li><strong>Avoid excessive hot water usage</strong>, saving energy and reducing water bills.</li>
+    <li><strong>Understand the physics</strong> behind why your bath cools down, helping you optimize the setup for longer, warmer soaks.</li>
+</ul>
+
+<h2>Finally,</h2>
+
+<p>Keeping your bath at a comfortable temperature is a science that combines heat transfer principles with practical water management. Instead of constantly adjusting the hot water tap and hoping for the best, our calculator provides an optimized, data-driven approach to maintaining your perfect bath experience. Try it out and enjoy a smarter, warmer, and more efficient bath today!</p>
+      <a href="http://justgregory.me/projects/coldbaths/bathtubcalc.html" class="back-link">Calculator</a>
+      <a href="http://justgregory.me/projects.html" class="back-link"> Back to Blog</a>
+    </article>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 Just Gregory. All rights reserved.</p>
+  </footer>
+</body>
+</html>

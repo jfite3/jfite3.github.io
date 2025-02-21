@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dark Bath Calculator (Imperial)</title>
+
+  <!-- Import the Montserrat font directly -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" 
+    rel="stylesheet">
+
+  <style>
+    /* Global Reset / Dark Background */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      background: #000; /* Force a solid black background */
+      font-family: 'Montserrat', sans-serif;
+      color: #fff; /* Light text globally */
+    }
+
+    /* Container to hold the calculator */
+    .dark-calc-container {
+      min-height: 100vh;  /* Fill viewport height */
+      display: flex;      /* Center content horizontally & vertically if desired */
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    /* Main box for the calculator */
+    .calc-box {
+      background: #181818; /* Dark but not pure black */
+      border: 1px solid #444;
+      border-radius: 6px;
+      max-width: 600px;
+      width: 100%;
+      padding: 1.5rem;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.7);
+    }
+
+    .calc-box h2 {
+      font-weight: 400;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #f2f2f2;
+      text-align: center;
+    }
+    .calc-box p {
+      color: #ccc;
+      font-weight: 300;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    /* Center each label+input pair */
+    .form-group {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: #ddd;
+      font-weight: 400;
+    }
+    .form-group input[type="number"] {
+      width: 100%;
+      max-width: 280px;
+      padding: 0.5rem;
+      border: 1px solid #444;
+      background: #333;
+      color: #fff;
+      border-radius: 3px;
+      text-align: center; /* center text inside the input */
+    }
+    .form-group input[type="number"]::placeholder {
+      color: #999;
+    }
+
+    /* Calculate button */
+    .calc-button {
+      display: inline-block;
+      background: #667eea;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .calc-button:hover {
+      background: #556cd6;
+    }
+
+    /* Results container */
+    .calc-results {
+      margin-top: 1.5rem;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 4px;
+      padding: 1rem;
+      color: #efefef;
+    }
+    .calc-results h3 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: #fff;
+    }
+    .calc-results p {
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .calc-warning {
+      color: #ff8888;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<div class="dark-calc-container">
+  <div class="calc-box">
+    <h2>Bath Temperature Maintenance Calculator</h2>
+    <p>
+      <em>Imperial Units</em>  
+      <br>  
+      Quickly calculate how much hot water you need to heat and maintain your bath at a desired temperature.
+    </p>
+    
+    <!-- Input fields -->
+    <div class="form-group">
+      <label for="T_star">Desired Bath Temp (T*) [øF]</label>
+      <input type="number" id="T_star" step="0.1" placeholder="e.g. 100" required>
+    </div>
+
+    <div class="form-group">
+      <label for="V">Total Bath Volume (V) [gallons]</label>
+      <input type="number" id="V" step="0.1" placeholder="e.g. 60" required>
+    </div>
+
+    <div class="form-group">
+      <label for="T0">Initial Bath Temp (T0) [øF]</label>
+      <input type="number" id="T0" step="0.1" placeholder="e.g. 70" required>
+    </div>
+
+    <div class="form-group">
+      <label for="T_a">Hot Water Temp (T_a) [øF]</label>
+      <input type="number" id="T_a" step="0.1" placeholder="e.g. 120" required>
+    </div>
+
+    <div class="form-group">
+      <label for="T_env">Ambient Temp (T_env) [øF]</label>
+      <input type="number" id="T_env" step="0.1" placeholder="e.g. 68" required>
+    </div>
+
+    <div class="form-group">
+      <label for="k">Heat-Loss Coefficient (k) [BTU/(hrúøF)]</label>
+      <input type="number" id="k" step="0.1" placeholder="e.g. 150" required>
+    </div>
+
+    <div class="form-group">
+      <label for="D">Duration (D) [hours]</label>
+      <input type="number" id="D" step="0.1" placeholder="e.g. 2" required>
+    </div>
+
+    <div style="text-align: center; margin-top: 1rem;">
+      <button class="calc-button" type="button" onclick="calculateBathFlowImperial()">
+        Calculate
+      </button>
+      <!-- Home button linking to google.com -->
+      <a href="https://google.com" target="_blank" class="calc-button" style="margin-left: 1rem; text-decoration: none;">
+        Home
+      </a>
+    </div>
+
+    <!-- Results area -->
+    <div id="results" class="calc-results" style="display: none;"></div>
+  </div>
+</div>
+
+<!-- JavaScript Calculation Logic -->
+<script>
+function calculateBathFlowImperial() {
+  // 1. Grab user inputs
+  const T_star = parseFloat(document.getElementById("T_star").value);
+  const V      = parseFloat(document.getElementById("V").value);
+  const T0     = parseFloat(document.getElementById("T0").value);
+  const T_a    = parseFloat(document.getElementById("T_a").value);
+  const T_env  = parseFloat(document.getElementById("T_env").value);
+  const k      = parseFloat(document.getElementById("k").value);
+  const D      = parseFloat(document.getElementById("D").value);
+
+  const resultsDiv = document.getElementById("results");
+
+  // Basic validation
+  if ([T_star, V, T0, T_a, T_env, k, D].some(isNaN)) {
+    resultsDiv.style.display = "block";
+    resultsDiv.innerHTML = "<p class='calc-warning'>Please enter valid numeric values in all fields.</p>";
+    return;
+  }
+  if (D <= 0) {
+    resultsDiv.style.display = "block";
+    resultsDiv.innerHTML = "<p class='calc-warning'>Duration (D) must be > 0.</p>";
+    return;
+  }
+
+  // Potential warning
+  let warningMsg = "";
+  if (T_a <= T_star) {
+    warningMsg = "Warning: Hot water temperature (T_a) ó desired bath temperature (T*). You cannot heat above T_a.<br>";
+  }
+
+  // 2. Constants for water (Imperial)
+  const rho = 8.34; // lb/gal
+  const c   = 1.0;  // BTU/(lbúøF)
+
+  // 3. Formulas
+  // numerator = (rho*c*V*(T_star - T0)) + (k*(T_star - T_env)*D)
+  // denominator = c*(T_a - T_star)*D
+  const numerator   = (rho * c * V * (T_star - T0)) + (k * (T_star - T_env) * D);
+  const denominator = c * (T_a - T_star) * D;
+
+  if (Math.abs(denominator) < 1e-12) {
+    resultsDiv.style.display = "block";
+    resultsDiv.innerHTML = "<p class='calc-warning'>Denominator near zero. Check T_a != T_star and D > 0.</p>";
+    return;
+  }
+
+  // Mass flow rate (lb/hr)
+  const m_dot = numerator / denominator;
+
+  // Volumetric flow rate (gal/hr)
+  const V_dot = m_dot / rho;
+
+  // 4. Totals
+  const totalGallons = V_dot * D;
+  const E_total = m_dot * c * (T_a - T_star) * D; // BTU
+
+  // 5. Build output
+  let output = "";
+  if (warningMsg) {
+    output += `<p class='calc-warning'>${warningMsg}</p>`;
+  }
+  output += `<h3>Results</h3>`;
+  output += `<p><strong>Required mass flow rate of hot water:</strong> ${m_dot.toFixed(2)} lb/hr</p>`;
+  output += `<p><strong>Required volumetric flow rate:</strong> ${V_dot.toFixed(2)} gal/hr</p>`;
+  output += `<p>Over ${D.toFixed(1)} hours, total hot water used: ${totalGallons.toFixed(1)} gallons</p>`;
+  output += `<p>Total heat added: ${E_total.toFixed(0)} BTU</p>`;
+  output += `<hr>`;
+  output += `<p><em>Continuously feed ${V_dot.toFixed(2)} gal/hr of ${T_a.toFixed(1)}øF water ` 
+         + `while draining the same amount, to raise your bath from ${T0.toFixed(1)}øF `
+         + `to ${T_star.toFixed(1)}øF and offset heat losses for ${D.toFixed(1)} hours.</em></p>`;
+  output += `<p><strong>Note:</strong> This lumps initial heating + steady maintenance into one constant flow rate.</p>`;
+
+  // 6. Show results
+  resultsDiv.style.display = "block";
+  resultsDiv.innerHTML = output;
+}
+</script>
+</body>
+</html>
+
