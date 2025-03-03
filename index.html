@@ -151,40 +151,7 @@
       margin-bottom: 0.3rem;
       color: #333;
     }
-
-    /* CALENDAR */
-    #calendar {
-      margin-top: 2rem;
-    }
-    #calendar h2 {
-      margin-bottom: 1rem;
-    }
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 5px;
-      text-align: center;
-    }
-    .calendar-day {
-      background: #f9f9f9;
-      padding: 10px 0;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      cursor: pointer;
-      user-select: none;
-    }
-    .calendar-day:hover {
-      background: #eee;
-    }
-    .calendar-day.selected {
-      background: #cce5ff;
-      border-color: #99ccff;
-    }
-    .weekend {
-      color: #5477f5; /* highlight weekends in different color text */
-    }
-
-    footer {
+        footer {
       text-align: center;
       padding: 1rem;
       color: #777;
@@ -220,15 +187,6 @@
       <li>Andrew’s truck (towing camper) + possibly 2nd car</li>
     </ul>
 
-    <!-- COMMENTS -->
-    <div class="comment-section">
-      <h4>Comments on Who’s Going</h4>
-      <textarea id="comment-whosgoing" placeholder="Type your comment..."></textarea>
-      <button onclick="addComment('comment-whosgoing', 'list-whosgoing', 'comments-whosgoing')">Submit</button>
-      <ul class="comment-list" id="list-whosgoing"></ul>
-    </div>
-  </section>
-
   <!-- ACTIVITIES SECTION -->
   <section>
     <h2>Activities</h2>
@@ -248,15 +206,6 @@
       </ul>
     </div>
 
-    <!-- COMMENTS -->
-    <div class="comment-section">
-      <h4>Comments on Activities</h4>
-      <textarea id="comment-activities" placeholder="Type your comment..."></textarea>
-      <button onclick="addComment('comment-activities', 'list-activities', 'comments-activities')">Submit</button>
-      <ul class="comment-list" id="list-activities"></ul>
-    </div>
-  </section>
-
   <!-- MEALS & COSTS SECTION -->
   <section>
     <h2>Meals & Costs</h2>
@@ -273,15 +222,6 @@
         <li><strong>Total Range:</strong> ~$140–$235/person</li>
       </ul>
     </div>
-
-    <!-- COMMENTS -->
-    <div class="comment-section">
-      <h4>Comments on Meals & Costs</h4>
-      <textarea id="comment-meals" placeholder="Type your comment..."></textarea>
-      <button onclick="addComment('comment-meals', 'list-meals', 'comments-meals')">Submit</button>
-      <ul class="comment-list" id="list-meals"></ul>
-    </div>
-  </section>
 
   <!-- DAY-BY-DAY OUTLINE (COLLAPSIBLE) -->
   <section>
@@ -335,14 +275,9 @@
       </ul>
     </div>
 
-    <!-- COMMENTS FOR THE DAY-BY-DAY SECTION -->
-    <div class="comment-section">
-      <h4>Comments on Day-by-Day Plan</h4>
-      <textarea id="comment-dayplan" placeholder="Type your comment..."></textarea>
-      <button onclick="addComment('comment-dayplan', 'list-dayplan', 'comments-dayplan')">Submit</button>
-      <ul class="comment-list" id="list-dayplan"></ul>
-    </div>
-  </section>
+    <!-- COMMENTS FOR THIS SECTION -->
+    <script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
+<div class="commonninja_component pid-e7986454-9ebc-43be-afa6-3fc0685f862f"></div>
 
   <!-- CALENDAR SECTION -->
   <section id="calendar">
@@ -362,9 +297,6 @@
 </footer>
 
 <script>
-  /***************************
-   * 1) COLLAPSIBLE SECTIONS *
-   ***************************/
   function toggleDay(dayId) {
     const content = document.getElementById(dayId);
     const thisArrow = content.previousElementSibling.querySelector('.toggle-arrow');
@@ -376,72 +308,7 @@
       content.style.display = 'block';
       thisArrow.classList.add('open');
     }
-    // Save collapsible state if desired (optional enhancement)
   }
-
-  /***************************************
-   * 2) LOAD AND SAVE COMMENTS TO SHEETS *
-   ***************************************/
-
-  // REPLACE WITH YOUR DEPLOYED WEB APP URL FROM APPS SCRIPT
-  const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYED_URL_HERE/exec";
-
-  // Adds a new comment to Google Sheets and reloads the list.
-  async function addComment(textAreaId, listId, sectionKey) {
-    const commentText = document.getElementById(textAreaId).value.trim();
-    if (!commentText) return;
-
-    try {
-      const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ section: sectionKey, comment: commentText })
-      });
-
-      const result = await response.json();
-      if (result.status === 'success') {
-        // Clear the textarea
-        document.getElementById(textAreaId).value = '';
-        // Reload comments
-        await loadComments(sectionKey, listId);
-      } else {
-        console.error('Error saving comment:', result.message);
-      }
-    } catch (err) {
-      console.error('Fetch error:', err);
-    }
-  }
-
-  // Retrieves comments from Google Sheets for a given section.
-  async function loadComments(sectionKey, listId) {
-    try {
-      const response = await fetch(`${GOOGLE_APPS_SCRIPT_URL}?section=${encodeURIComponent(sectionKey)}`);
-      const comments = await response.json();
-
-      const listEl = document.getElementById(listId);
-      listEl.innerHTML = '';
-
-      comments.forEach(c => {
-        const li = document.createElement('li');
-        li.textContent = c.comment;
-        listEl.appendChild(li);
-      });
-    } catch (err) {
-      console.error('Error loading comments:', err);
-    }
-  }
-
-  // On page load, we can automatically load existing comments.
-  window.addEventListener('DOMContentLoaded', () => {
-    loadComments('comments-wherewhen', 'list-wherewhen');
-    loadComments('comments-whosgoing', 'list-whosgoing');
-    loadComments('comments-activities', 'list-activities');
-    loadComments('comments-meals', 'list-meals');
-    loadComments('comments-dayplan', 'list-dayplan');
-  });
-
 </script>
 
 </body>
