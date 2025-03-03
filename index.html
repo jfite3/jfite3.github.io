@@ -16,6 +16,7 @@
       background: #f2f2f2;
       color: #333;
       margin: 0;
+      line-height: 1.6;
     }
     header {
       background: linear-gradient(135deg, #73a5ff, #5477f5);
@@ -29,19 +30,19 @@
       margin-bottom: 0.5rem;
     }
     header p {
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
     main {
       max-width: 900px;
       background: #fff;
       margin: 0 auto 2rem auto;
       padding: 2rem;
-      border-radius: 6px;
+      border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     h2, h3, h4 {
       margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
       color: #444;
       font-weight: 600;
     }
@@ -51,29 +52,31 @@
       margin-bottom: 1rem;
     }
     section {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      padding: 1rem;
     }
     .highlight {
       background: #fafafa;
-      padding: 1rem;
-      border-radius: 4px;
+      padding: 1.5rem;
+      border-radius: 6px;
       margin-top: 1rem;
     }
     ul {
       list-style: none;
-      margin-top: 0.5rem;
-      padding-left: 1.2rem;
+      margin-top: 0.75rem;
+      padding-left: 1.5rem;
     }
     ul li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
       position: relative;
-      padding-left: 0.75rem;
+      padding-left: 1rem;
     }
     ul li::before {
       content: "•";
       position: absolute;
       left: 0;
       color: #5477f5;
+      font-size: 1.2rem;
     }
 
     /* COLLAPSIBLE DAY-BY-DAY */
@@ -82,25 +85,23 @@
       justify-content: space-between;
       align-items: center;
       background: #edf1fe;
-      padding: 0.75rem 1rem;
+      padding: 1rem;
       cursor: pointer;
       border: 1px solid #dce0f9;
-      border-radius: 4px;
-      margin-bottom: 0.5rem;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
     }
     .day-header h4 {
       margin: 0;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 600;
     }
     .day-content {
       display: none;
       background: #fff;
-      border-left: 1px solid #dce0f9;
-      border-right: 1px solid #dce0f9;
-      border-bottom: 1px solid #dce0f9;
-      border-radius: 0 0 4px 4px;
-      padding: 1rem;
+      border: 1px solid #dce0f9;
+      border-radius: 6px;
+      padding: 1.25rem;
     }
     .toggle-arrow {
       transition: transform 0.3s ease;
@@ -112,21 +113,24 @@
     /* RESPONSIVE DESIGN */
     @media (max-width: 768px) {
       body {
-        font-size: 16px;
+        font-size: 18px;
       }
       header {
         padding: 1.5rem;
       }
       main {
-        width: 90%;
+        width: 95%;
         padding: 1.5rem;
       }
+      section {
+        padding: 1rem;
+      }
       .day-header {
-        font-size: 0.9rem;
-        padding: 0.5rem 0.75rem;
+        font-size: 1rem;
+        padding: 0.75rem;
       }
       .day-content {
-        padding: 0.75rem;
+        padding: 1rem;
       }
       iframe {
         width: 100%;
@@ -138,6 +142,7 @@
       text-align: center;
       padding: 1rem;
       color: #777;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -147,8 +152,7 @@
   <h1>Mohican Long Weekend Trip</h1>
   <p>Planning and Input Help</p>
 </header>
-
-<main>
+  
   <main>
   <!-- WHERE & WHEN SECTION -->
   <section>
@@ -253,8 +257,7 @@
         <li>Leisurely morning, fishing or short walk whatever we feel.</li>
         <li>Pack up & head home before they force us to pay for another night (the cheatin' bastards)</li>
       </ul>
-    </div>
-
+</div>
   <!-- COMMENTS WIDGET -->
   <script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
   <div class="commonninja_component pid-e7986454-9ebc-43be-afa6-3fc0685f862f"></div>
@@ -266,7 +269,6 @@
     <iframe src="https://calendar.google.com/calendar/embed?src=e4a4404cbd96e885beb074bba186262f5bd0b05054294cccb7fae86c6976522e%40group.calendar.google.com&ctz=America%2FNew_York" style="border: 0" width="100%" height="500" frameborder="0" scrolling="no"></iframe>
   </section>
 </main>
-
 <footer>
   <p>&copy; 2025 Jordan Fite</p>
 </footer>
