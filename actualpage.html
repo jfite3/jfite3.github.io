@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Just Gregory - Home</title>
+  <style>
+    /* Import font */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+    /* Global Styles & Dark Theme with Background Image */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: url("background.png") no-repeat center center fixed;
+      background-size: cover;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+    
+    /* Header & Navbar */
+    header {
+      background: linear-gradient(135deg, #333, #555);
+      padding: 1rem;
+    }
+    .navbar {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .site-name {
+      font-size: 2rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+    nav ul li {
+      margin-left: 1rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ccc;
+    }
+    
+    /* Hero Section */
+    .hero {
+      max-width: 1000px;
+      margin: 3rem auto;
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.5); /* Optional: dark overlay for readability */
+      border-radius: 10px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .cta {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .btn {
+      padding: 0.8rem 1.2rem;
+      background: #667eea;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #556cd6;
+    }
+    
+    /* Features Section */
+    .features {
+      max-width: 1000px;
+      margin: 2rem auto;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: rgba(0, 0, 0, 0.5); /* Optional overlay */
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    .feature {
+      background: #1e1e1e;
+      padding: 1.5rem;
+      border-radius: 5px;
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    .feature h2 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    .feature p {
+      font-size: 1rem;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #333;
+      color: #ccc;
+      margin-top: 3rem;
+    }
+    
+    @media (max-width:600px) {
+      .site-name {
+        font-size: 1.5rem;
+      }
+      nav ul li a {
+        font-size: 0.9rem;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="http://justgregory.me/index.html" class="site-name">Just Gregory</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <div class="hero">
+    <h1>Welcome to Just Gregory</h1>
+    <p>Discover my musings, creative projects, and more.</p>
+    <div class="cta">
+      <a href="blog.html" class="btn">Visit Blog</a>
+      <a href="projects.html" class="btn">View Projects</a>
+      <a href="dontclick.html" class="btn">Don't Click</a>
+    </div>
+  </div>
+  
+  <div class="features">
+    <div class="feature">
+      <h2>Latest Thoughts</h2>
+      <p>Read my latest reflections on everyday moments and creative insights.</p>
+    </div>
+    <div class="feature">
+      <h2>Innovative Projects</h2>
+      <p>Explore coding projects and creative experiments I'm working on.</p>
+    </div>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 Just Gregory. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
+

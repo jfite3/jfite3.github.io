@@ -1,188 +1,453 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Just Gregory - Home</title>
+  <meta charset="UTF-8">
+  <title>Mohican Long Weekend Trip</title>
   <style>
-    /* Import font */
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
-
-    /* Global Styles & Dark Theme with Background Image */
+    /* GLOBAL STYLES */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: url("background.png") no-repeat center center fixed;
-      background-size: cover;
-      color: #e0e0e0;
-      line-height: 1.6;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      color: #333;
+      margin: 0;
     }
-    
-    /* Header & Navbar */
     header {
-      background: linear-gradient(135deg, #333, #555);
-      padding: 1rem;
+      background: linear-gradient(135deg, #73a5ff, #5477f5);
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 1rem;
     }
-    .navbar {
-      max-width: 1000px;
-      margin: 0 auto;
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1rem;
+    }
+    main {
+      max-width: 900px;
+      background: #fff;
+      margin: 0 auto 2rem auto;
+      padding: 2rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2, h3, h4 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #444;
+      font-weight: 600;
+    }
+    h2 {
+      border-bottom: 2px solid #ececec;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    section {
+      margin-bottom: 1.5rem;
+    }
+    .highlight {
+      background: #fafafa;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+    ul {
+      list-style: none;
+      margin-top: 0.5rem;
+      padding-left: 1.2rem;
+    }
+    ul li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 0.75rem;
+    }
+    ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #5477f5;
+    }
+
+    /* COLLAPSIBLE DAY-BY-DAY */
+    .day-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: #edf1fe;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      border: 1px solid #dce0f9;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
     }
-    .site-name {
-      font-size: 2rem;
-      font-weight: 700;
-      text-decoration: none;
-      color: #fff;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-    }
-    nav ul li {
-      margin-left: 1rem;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: #fff;
+    .day-header h4 {
+      margin: 0;
       font-size: 1rem;
-      transition: color 0.3s;
+      font-weight: 600;
     }
-    nav ul li a:hover {
-      color: #ccc;
-    }
-    
-    /* Hero Section */
-    .hero {
-      max-width: 1000px;
-      margin: 3rem auto;
-      text-align: center;
-      padding: 2rem;
-      background: rgba(0, 0, 0, 0.5); /* Optional: dark overlay for readability */
-      border-radius: 10px;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
-    .cta {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-    .btn {
-      padding: 0.8rem 1.2rem;
-      background: #667eea;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background: #556cd6;
-    }
-    
-    /* Features Section */
-    .features {
-      max-width: 1000px;
-      margin: 2rem auto;
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 2rem;
-      background: rgba(0, 0, 0, 0.5); /* Optional overlay */
+    .day-content {
+      display: none; /* collapsed by default */
+      background: #fff;
+      border-left: 1px solid #dce0f9;
+      border-right: 1px solid #dce0f9;
+      border-bottom: 1px solid #dce0f9;
+      border-radius: 0 0 4px 4px;
       padding: 1rem;
-      border-radius: 10px;
     }
-    .feature {
-      background: #1e1e1e;
-      padding: 1.5rem;
-      border-radius: 5px;
-      flex: 1;
-      min-width: 250px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    .toggle-arrow {
+      transition: transform 0.3s ease;
     }
-    .feature h2 {
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
+    .toggle-arrow.open {
+      transform: rotate(90deg);
     }
-    .feature p {
+
+    /* COMMENT SECTIONS */
+    .comment-section {
+      margin-top: 1rem;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 1rem;
+      background: #fdfdfd;
+    }
+    .comment-section h4 {
+      margin-bottom: 0.5rem;
       font-size: 1rem;
+      color: #555;
     }
-    
-    /* Footer */
+    .comment-section textarea {
+      width: 100%;
+      height: 50px;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      font-family: Arial, sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .comment-section button {
+      background: #5477f5;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .comment-section button:hover {
+      background: #3b5cc2;
+    }
+    .comment-list {
+      list-style: disc;
+      margin-top: 0.5rem;
+      padding-left: 1.25rem;
+    }
+    .comment-list li {
+      margin-bottom: 0.3rem;
+      color: #333;
+    }
+
+    /* CALENDAR */
+    #calendar {
+      margin-top: 2rem;
+    }
+    #calendar h2 {
+      margin-bottom: 1rem;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      text-align: center;
+    }
+    .calendar-day {
+      background: #f9f9f9;
+      padding: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .calendar-day:hover {
+      background: #eee;
+    }
+    .calendar-day.selected {
+      background: #cce5ff;
+      border-color: #99ccff;
+    }
+    .weekend {
+      color: #5477f5; /* highlight weekends in different color text */
+    }
+
     footer {
       text-align: center;
       padding: 1rem;
-      background: #333;
-      color: #ccc;
-      margin-top: 3rem;
-    }
-    
-    @media (max-width:600px) {
-      .site-name {
-        font-size: 1.5rem;
-      }
-      nav ul li a {
-        font-size: 0.9rem;
-      }
-      .hero h1 {
-        font-size: 2.5rem;
-      }
+      color: #777;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="navbar">
-      <a href="http://justgregory.me/index.html" class="site-name">Just Gregory</a>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="projects.html">Projects</a></li>
-        </ul>
-      </nav>
+
+<header>
+  <h1>Mohican Long Weekend Trip</h1>
+  <p>4 Days of Fun & Relaxation</p>
+</header>
+
+<main>
+  <!-- WHERE & WHEN SECTION -->
+  <section>
+    <h2>Where & When</h2>
+    <ul>
+      <li><strong>Location:</strong> Mohican State Park (3 hrs away)</li>
+      <li><strong>Dates:</strong> Arrive Day 1 (Wed/Thu), Depart Day 4 (Sat/Sun)</li>
+      <li><strong>Campsite Fee:</strong> $30–$45/night (3 nights = $90–$135 total)</li>
+    </ul>
+
+    <!-- COMMENTS FOR THIS SECTION -->
+    <div class="comment-section">
+      <h4>Comments on Where & When</h4>
+      <textarea id="comment-wherewhen" placeholder="Type your comment..."></textarea>
+      <button onclick="addComment('comment-wherewhen', 'list-wherewhen', 'comments-wherewhen')">Submit</button>
+      <ul class="comment-list" id="list-wherewhen"></ul>
     </div>
-  </header>
-  
-  <div class="hero">
-    <h1>Welcome to Just Gregory</h1>
-    <p>Discover my musings, creative projects, and more.</p>
-    <div class="cta">
-      <a href="blog.html" class="btn">Visit Blog</a>
-      <a href="projects.html" class="btn">View Projects</a>
-      <a href="dontclick.html" class="btn">Don't Click</a>
+  </section>
+
+  <!-- WHO'S GOING SECTION -->
+  <section>
+    <h2>Who’s Going?</h2>
+    <ul>
+      <li>4–6 of us in Sister’s trailer</li>
+      <li>Andrew’s truck (towing camper) + possibly 2nd car</li>
+    </ul>
+
+    <!-- COMMENTS -->
+    <div class="comment-section">
+      <h4>Comments on Who’s Going</h4>
+      <textarea id="comment-whosgoing" placeholder="Type your comment..."></textarea>
+      <button onclick="addComment('comment-whosgoing', 'list-whosgoing', 'comments-whosgoing')">Submit</button>
+      <ul class="comment-list" id="list-whosgoing"></ul>
     </div>
-  </div>
-  
-  <div class="features">
-    <div class="feature">
-      <h2>Latest Thoughts</h2>
-      <p>Read my latest reflections on everyday moments and creative insights.</p>
+  </section>
+
+  <!-- ACTIVITIES SECTION -->
+  <section>
+    <h2>Activities</h2>
+    <div class="highlight">
+      <ul>
+        <li><strong>Kayaking/Canoeing:</strong> $25–$35/person (Mohican Adventures)</li>
+        <li><strong>Hiking:</strong> Free at Mohican State Park</li>
+        <li><strong>Pleasant Hill Lake Park:</strong> ~$0–$5 day-use</li>
+        <li><strong>Explore Loudonville:</strong> shops, local diner</li>
+      </ul>
+      <h4>Rainy Day Backups</h4>
+      <ul>
+        <li>Cleo Redd Fisher Museum (free/donation)</li>
+        <li>Malabar Farm House Tour (~$5–$6)</li>
+        <li>Amish Country (~25–30 min drive)</li>
+        <li>Mansfield (escape room, bowling)</li>
+      </ul>
     </div>
-    <div class="feature">
-      <h2>Innovative Projects</h2>
-      <p>Explore coding projects and creative experiments I'm working on.</p>
+
+    <!-- COMMENTS -->
+    <div class="comment-section">
+      <h4>Comments on Activities</h4>
+      <textarea id="comment-activities" placeholder="Type your comment..."></textarea>
+      <button onclick="addComment('comment-activities', 'list-activities', 'comments-activities')">Submit</button>
+      <ul class="comment-list" id="list-activities"></ul>
     </div>
-  </div>
-  
-  <footer>
-    <p>&copy; 2025 Just Gregory. All rights reserved.</p>
-  </footer>
+  </section>
+
+  <!-- MEALS & COSTS SECTION -->
+  <section>
+    <h2>Meals & Costs</h2>
+    <ul>
+      <li>Mostly cook at camper (hot dogs, burgers, etc.)</li>
+      <li>1–2 nice dinners out (~$15–$25/person)</li>
+      <li>Grocery budget: ~$50–$100/person (whole trip)</li>
+    </ul>
+    <div class="highlight">
+      <ul>
+        <li><strong>Campsite:</strong> $90–$135 total (split)</li>
+        <li><strong>Kayak/Canoe:</strong> $25–$35/person</li>
+        <li><strong>Food, Gas, Misc.:</strong> ~$100–$150/person</li>
+        <li><strong>Total Range:</strong> ~$140–$235/person</li>
+      </ul>
+    </div>
+
+    <!-- COMMENTS -->
+    <div class="comment-section">
+      <h4>Comments on Meals & Costs</h4>
+      <textarea id="comment-meals" placeholder="Type your comment..."></textarea>
+      <button onclick="addComment('comment-meals', 'list-meals', 'comments-meals')">Submit</button>
+      <ul class="comment-list" id="list-meals"></ul>
+    </div>
+  </section>
+
+  <!-- DAY-BY-DAY OUTLINE (COLLAPSIBLE) -->
+  <section>
+    <h2>Day-by-Day Outline</h2>
+
+    <div class="day-header" onclick="toggleDay('day1')">
+      <h4>Day 1: Arrival & Setup</h4>
+      <span class="toggle-arrow">&#9654;</span>
+    </div>
+    <div id="day1" class="day-content">
+      <ul>
+        <li>Arrive & set up (3-hr drive)</li>
+        <li>Short hike at Mohican State Park</li>
+        <li>Campfire dinner (hot dogs, burgers)</li>
+      </ul>
+    </div>
+
+    <div class="day-header" onclick="toggleDay('day2')">
+      <h4>Day 2: Water Adventure & Hiking</h4>
+      <span class="toggle-arrow">&#9654;</span>
+    </div>
+    <div id="day2" class="day-content">
+      <ul>
+        <li>Kayak/canoe on Mohican River ($25–$35/person)</li>
+        <li>Afternoon hiking at Mohican State Park (free)</li>
+        <li>Evening cookout at campsite</li>
+      </ul>
+    </div>
+
+    <div class="day-header" onclick="toggleDay('day3')">
+      <h4>Day 3: Outdoor Fun & Local Exploration</h4>
+      <span class="toggle-arrow">&#9654;</span>
+    </div>
+    <div id="day3" class="day-content">
+      <ul>
+        <li>Pleasant Hill Lake Park (~$0–$5 parking)</li>
+        <li>Lunch at local diner (optional)</li>
+        <li>Explore Loudonville shops</li>
+        <li>Optional dinner out ($15–$25/person)</li>
+      </ul>
+    </div>
+
+    <div class="day-header" onclick="toggleDay('day4')">
+      <h4>Day 4: Relaxation & Departure</h4>
+      <span class="toggle-arrow">&#9654;</span>
+    </div>
+    <div id="day4" class="day-content">
+      <ul>
+        <li>Leisurely morning, fishing or short walk</li>
+        <li>Pack up & head home (early afternoon)</li>
+      </ul>
+    </div>
+
+    <!-- COMMENTS FOR THE DAY-BY-DAY SECTION -->
+    <div class="comment-section">
+      <h4>Comments on Day-by-Day Plan</h4>
+      <textarea id="comment-dayplan" placeholder="Type your comment..."></textarea>
+      <button onclick="addComment('comment-dayplan', 'list-dayplan', 'comments-dayplan')">Submit</button>
+      <ul class="comment-list" id="list-dayplan"></ul>
+    </div>
+  </section>
+
+  <!-- CALENDAR SECTION -->
+  <section id="calendar">
+    <h2>Pick Potential Dates</h2>
+    <p>Click on any date to highlight it for a possible trip weekend. (Selections saved in your browser)</p>
+    <div class="calendar-grid" id="calendar-grid">
+      <!-- Calendar days will be generated by JavaScript -->
+    </div>
+  </section>
+
+<iframe src="https://calendar.google.com/calendar/embed?src=e4a4404cbd96e885beb074bba186262f5bd0b05054294cccb7fae86c6976522e%40group.calendar.google.com&ctz=America%2FNew_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 Jordan Fite</p>
+</footer>
+
+<script>
+  /***************************
+   * 1) COLLAPSIBLE SECTIONS *
+   ***************************/
+  function toggleDay(dayId) {
+    const content = document.getElementById(dayId);
+    const thisArrow = content.previousElementSibling.querySelector('.toggle-arrow');
+
+    if (content.style.display === 'block') {
+      content.style.display = 'none';
+      thisArrow.classList.remove('open');
+    } else {
+      content.style.display = 'block';
+      thisArrow.classList.add('open');
+    }
+    // Save collapsible state if desired (optional enhancement)
+  }
+
+  /***************************************
+   * 2) LOAD AND SAVE COMMENTS TO SHEETS *
+   ***************************************/
+
+  // REPLACE WITH YOUR DEPLOYED WEB APP URL FROM APPS SCRIPT
+  const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYED_URL_HERE/exec";
+
+  // Adds a new comment to Google Sheets and reloads the list.
+  async function addComment(textAreaId, listId, sectionKey) {
+    const commentText = document.getElementById(textAreaId).value.trim();
+    if (!commentText) return;
+
+    try {
+      const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ section: sectionKey, comment: commentText })
+      });
+
+      const result = await response.json();
+      if (result.status === 'success') {
+        // Clear the textarea
+        document.getElementById(textAreaId).value = '';
+        // Reload comments
+        await loadComments(sectionKey, listId);
+      } else {
+        console.error('Error saving comment:', result.message);
+      }
+    } catch (err) {
+      console.error('Fetch error:', err);
+    }
+  }
+
+  // Retrieves comments from Google Sheets for a given section.
+  async function loadComments(sectionKey, listId) {
+    try {
+      const response = await fetch(`${GOOGLE_APPS_SCRIPT_URL}?section=${encodeURIComponent(sectionKey)}`);
+      const comments = await response.json();
+
+      const listEl = document.getElementById(listId);
+      listEl.innerHTML = '';
+
+      comments.forEach(c => {
+        const li = document.createElement('li');
+        li.textContent = c.comment;
+        listEl.appendChild(li);
+      });
+    } catch (err) {
+      console.error('Error loading comments:', err);
+    }
+  }
+
+  // On page load, we can automatically load existing comments.
+  window.addEventListener('DOMContentLoaded', () => {
+    loadComments('comments-wherewhen', 'list-wherewhen');
+    loadComments('comments-whosgoing', 'list-whosgoing');
+    loadComments('comments-activities', 'list-activities');
+    loadComments('comments-meals', 'list-meals');
+    loadComments('comments-dayplan', 'list-dayplan');
+  });
+
+</script>
+
 </body>
 </html>
-
-
