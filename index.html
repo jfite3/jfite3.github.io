@@ -1,288 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mohican Long Weekend Trip</title>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Just Gregory - Home</title>
   <style>
-    /* GLOBAL STYLES */
+    /* Import font */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+    /* Global Styles & Dark Theme with Background Image */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      color: #333;
-      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: url("background.png") no-repeat center center fixed;
+      background-size: cover;
+      color: #e0e0e0;
       line-height: 1.6;
     }
+    
+    /* Header & Navbar */
     header {
-      background: linear-gradient(135deg, #73a5ff, #5477f5);
-      color: #fff;
-      padding: 2rem;
-      text-align: center;
-      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #333, #555);
+      padding: 1rem;
     }
-    header h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.2rem;
-    }
-    main {
-      max-width: 1100px;
-      background: #fff;
-      margin: 0 auto 2rem auto;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    h2, h3, h4 {
-      margin-top: 1.5rem;
-      margin-bottom: 0.75rem;
-      color: #444;
-      font-weight: 600;
-    }
-    h2 {
-      border-bottom: 2px solid #ececec;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    section {
-      margin-bottom: 2rem;
-      padding: 1.5rem;
-    }
-    .highlight {
-      background: #fafafa;
-      padding: 1.5rem;
-      border-radius: 6px;
-      margin-top: 1rem;
-    }
-    ul {
-      list-style: none;
-      margin-top: 0.75rem;
-      padding-left: 1.5rem;
-    }
-    ul li {
-      margin-bottom: 0.75rem;
-      position: relative;
-      padding-left: 1rem;
-    }
-    ul li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: #5477f5;
-      font-size: 1.2rem;
-    }
-
-    /* COLLAPSIBLE DAY-BY-DAY */
-    .day-header {
+    .navbar {
+      max-width: 1000px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #edf1fe;
+    }
+    .site-name {
+      font-size: 2rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+    nav ul li {
+      margin-left: 1rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ccc;
+    }
+    
+    /* Hero Section */
+    .hero {
+      max-width: 1000px;
+      margin: 3rem auto;
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.5); /* Optional: dark overlay for readability */
+      border-radius: 10px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .cta {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .btn {
+      padding: 0.8rem 1.2rem;
+      background: #667eea;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #556cd6;
+    }
+    
+    /* Features Section */
+    .features {
+      max-width: 1000px;
+      margin: 2rem auto;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: rgba(0, 0, 0, 0.5); /* Optional overlay */
       padding: 1rem;
-      cursor: pointer;
-      border: 1px solid #dce0f9;
-      border-radius: 6px;
-      margin-bottom: 0.75rem;
+      border-radius: 10px;
     }
-    .day-header h4 {
-      margin: 0;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-    .day-content {
-      display: none;
-      background: #fff;
-      border: 1px solid #dce0f9;
-      border-radius: 6px;
+    .feature {
+      background: #1e1e1e;
       padding: 1.5rem;
+      border-radius: 5px;
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
-    .toggle-arrow {
-      transition: transform 0.3s ease;
+    .feature h2 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
     }
-    .toggle-arrow.open {
-      transform: rotate(90deg);
+    .feature p {
+      font-size: 1rem;
     }
-
-    /* RESPONSIVE DESIGN */
-    @media (max-width: 768px) {
-      body {
-        font-size: 18px;
-      }
-      header {
-        padding: 1.5rem;
-      }
-      main {
-        width: 95%;
-        padding: 1.5rem;
-      }
-      .day-header {
-        font-size: 1rem;
-        padding: 0.75rem;
-      }
-      .day-content {
-        padding: 1.5rem;
-      }
-      iframe {
-        width: 100%;
-        height: auto;
-      }
-    }
-
+    
+    /* Footer */
     footer {
       text-align: center;
       padding: 1rem;
-      color: #777;
-      font-size: 0.9rem;
+      background: #333;
+      color: #ccc;
+      margin-top: 3rem;
+    }
+    
+    @media (max-width:600px) {
+      .site-name {
+        font-size: 1.5rem;
+      }
+      nav ul li a {
+        font-size: 0.9rem;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
     }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>Mohican Long Weekend Trip</h1>
-  <p>Planning and Input Help</p>
-</header>
-
-<main>
-  <!-- WHERE & WHEN SECTION -->
-    <h2>Where & When</h2>
-    <ul>
-      <li><strong>Location:</strong> <a href="https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/mohican-state-park-campground">(Mohican State Park)</a></li>
-      <li><strong>Dates:</strong> Undecided. See calendar and discuss in comments.</li>
-      <li><strong>Campsite Fee:</strong> $30–$45/night (3 nights = $90–$135 total)</li>
-    </ul>
-
-  <!-- WHO'S GOING SECTION -->
-    <h2>Who’s Going and How?</h2>
-    <ul>
-      <li>Emily, Andrew, Amy, Jordan, Grandma Sue. Maybe smeone else...?</li>
-      <li>I'm pretty sure that Andrew's truck will have to pull the trailor. We may not all fit so someone else may have to drive.</li>
-    </ul>
-
-  <!-- ACTIVITIES SECTION -->
-    <h2>Activities</h2>
-    <div class="highlight">
-      <ul>
-        <li><strong>Kayaking/Canoeing:</strong> $25–$35/person <a href="https://www.mohicanadventures.com/">(Mohican Adventures)</a></li>
-        <li><strong>Hiking:</strong> Free at <a href="https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/mohican-state-park-campground">(Mohican State Park)</a></li>
-        <li><strong>Pleasant Hill Lake Park:</strong> ~$0–$5 day-use <a href="https://reserve.mwcd.org/pleasant-hill/">(Check it out)</a></li>
-        <li><strong>Explore Loudonville:</strong> shops, local diner</li>
-      </ul>
-      <h4>Rainy Day Backups</h4>
-      <ul>
-        <li><a href="https://crfmuseum.com/">(Cleo Redd Fisher Museum)</a> (free/donation)</li>
-        <li><a href="https://malabarfarm.org/big-house-video-tour/">(Malabar Farm House Tour)</a> (~$5–$6)</li>
-        <li>Amish Country (~25–30 min drive)</li>
-        <li>Mansfield (escape room, bowling)</li>
-      </ul>
+  <header>
+    <div class="navbar">
+      <a href="http://justgregory.me/index.html" class="site-name">Just Gregory</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+      </nav>
     </div>
-
-  <!-- MEALS & COSTS SECTION -->
-    <h2>Meals & Costs</h2>
-    <ul>
-      <li>We should probably mostly cook at the camper (hot dogs, burgers, etc.)</li>
-      <li>1 or 2 nice dinners out? (~$15–$25/person)</li>
-      <li>Grocery budget is estimated at ~$50–$100/person for the whole trip.</li>
-    </ul>
-    <div class="highlight">
-      <ul>
-        <li><strong>Campsite:</strong> $90–$135 total (split)</li>
-        <li><strong>Kayak/Canoe:</strong> $25–$35/person</li>
-        <li><strong>Food, Gas, Misc.:</strong> ~$100–$150/person</li>
-        <li><strong>Total Range:</strong> ~$140–$235/person</li>
-      </ul>
+  </header>
+  
+  <div class="hero">
+    <h1>Welcome to Just Gregory</h1>
+    <p>Discover my musings, creative projects, and more.</p>
+    <div class="cta">
+      <a href="blog.html" class="btn">Visit Blog</a>
+      <a href="projects.html" class="btn">View Projects</a>
+      <a href="dontclick.html" class="btn">Don't Click</a>
     </div>
-
-  <!-- DAY-BY-DAY OUTLINE (COLLAPSIBLE) -->
-    <h2>Day-by-Day Outline</h2>
-
-    <div class="day-header" onclick="toggleDay('day1')">
-      <h4>Day 1: Arrival & Setup</h4>
-      <span class="toggle-arrow">&#9654;</span>
+  </div>
+  
+  <div class="features">
+    <div class="feature">
+      <h2>Latest Thoughts</h2>
+      <p>Read my latest reflections on everyday moments and creative insights.</p>
     </div>
-    <div id="day1" class="day-content">
-      <ul>
-        <li>Arrive at campsite and set up.</li>
-        <li>If we feel like it we can take a short hike at Mohican State Park.</li>
-        <li>Campfire dinner. (hot dogs, burgers)</li>
-      </ul>
+    <div class="feature">
+      <h2>Innovative Projects</h2>
+      <p>Explore coding projects and creative experiments I'm working on.</p>
     </div>
-
-    <div class="day-header" onclick="toggleDay('day2')">
-      <h4>Day 2: Water Adventure & Hiking</h4>
-      <span class="toggle-arrow">&#9654;</span>
-    </div>
-    <div id="day2" class="day-content">
-      <ul>
-        <li>Kayak/canoe on Mohican River ($25–$35/person)</li>
-        <li>Afternoon hiking at Mohican State Park, if we want. </li>
-        <li>Evening cookout at campsite</li>
-      </ul>
-    </div>
-
-    <div class="day-header" onclick="toggleDay('day3')">
-      <h4>Day 3: Outdoor Fun & Local Exploration</h4>
-      <span class="toggle-arrow">&#9654;</span>
-    </div>
-    <div id="day3" class="day-content">
-      <ul>
-        <li>Pleasant Hill Lake Park (~$0–$5 parking)</li>
-        <li>Lunch at local diner (optional)</li>
-        <li>Explore Loudonville shops?</li>
-        <li>Optional dinner out ($15–$25/person)</li>
-      </ul>
-    </div>
-
-    <div class="day-header" onclick="toggleDay('day4')">
-      <h4>Day 4: Relaxation & Departure</h4>
-      <span class="toggle-arrow">&#9654;</span>
-    </div>
-    <div id="day4" class="day-content">
-      <ul>
-        <li>Leisurely morning, fishing or short walk whatever we feel.</li>
-        <li>Pack up & head home before they force us to pay for another night (the cheatin' bastards)</li>
-      </ul>
-</div>
-
-  <!-- COMMENTS WIDGET -->
-  <script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
-  <div class="commonninja_component pid-e7986454-9ebc-43be-afa6-3fc0685f862f"></div>
-
-  <!-- CALENDAR SECTION -->
-  <section id="calendar">
-    <h2>Pick Potential Dates</h2>
-    <p>This is a Google calendar, sign in and add potential weekends...? Calender not working? Probably not because I'm lazy... Click here:</p>
-    <a href="https://calendar.google.com/calendar/embed?src=e4a4404cbd96e885beb074bba186262f5bd0b05054294cccb7fae86c6976522e%40group.calendar.google.com&ctz=America%2FNew_York">Google Calender</a>
-    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&showTitle=0&showPrint=0&src=ZTRhNDQwNGNiZDk2ZTg4NWJlYjA3NGJiYTE4NjI2MmY1YmQwYjA1MDU0Mjk0Y2NjYjdmYWU4NmM2OTc2NTIyZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%234285F4" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-  </section>
-
-</main>
-
-<footer>
-  <p>&copy; 2025 Jordan Fite</p>
-</footer>
-
-<script>
-  function toggleDay(dayId) {
-    const content = document.getElementById(dayId);
-    const thisArrow = content.previousElementSibling.querySelector('.toggle-arrow');
-
-    if (content.style.display === 'block') {
-      content.style.display = 'none';
-      thisArrow.classList.remove('open');
-    } else {
-      content.style.display = 'block';
-      thisArrow.classList.add('open');
-    }
-  }
-</script>
-
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 Just Gregory. All rights reserved.</p>
+  </footer>
 </body>
 </html>
+
+
